@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
   try {
     const keyword = req.query.keyword as string | undefined;
     const course = req.query.course as string | undefined;
+    const tag = req.query.tag as string | undefined;
 
     const notes = await prisma.note.findMany({
       where: {
@@ -32,6 +33,19 @@ router.get("/", async (req, res) => {
             ? {
                 course: {
                   contains: course,
+                },
+              }
+            : {},
+          tag
+            ? {
+                tags: {
+                  some: {
+                    tag: {
+                      name: {
+                        contains: tag,
+                      },
+                    },
+                  },
                 },
               }
             : {},
@@ -63,6 +77,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: "Failed to fetch notes" });
   }
 });
+
 router.post("/", authMiddleware, async (req, res) => {
   try {
     const { title, description, fileUrl, course } = req.body;
