@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import noteRoutes from "./routes/noteRoutes";
+import authRoutes from "./routes/authRoutes";
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/notes", noteRoutes);
-
+app.use("/auth", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

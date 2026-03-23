@@ -17,18 +17,18 @@
   "dependencies": {
     "@prisma/adapter-better-sqlite3": "^7.5.0",
     "@prisma/client": "latest",
-    "bcrypt": "latest",
+    "bcrypt": "^6.0.0",
     "better-sqlite3": "^12.8.0",
     "cors": "latest",
     "dotenv": "latest",
     "express": "latest",
-    "jsonwebtoken": "latest"
+    "jsonwebtoken": "^9.0.3"
   },
   "devDependencies": {
-    "@types/bcrypt": "latest",
+    "@types/bcrypt": "^6.0.0",
     "@types/cors": "latest",
     "@types/express": "latest",
-    "@types/jsonwebtoken": "latest",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "latest",
     "prisma": "latest",
     "ts-node-dev": "latest",

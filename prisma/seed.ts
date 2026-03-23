@@ -16,6 +16,7 @@ async function main() {
     where: { email: "test@uninotes.com" },
     update: {},
     create: {
+      name: "Test User",
       email: "test@uninotes.com",
       password: hashedPassword,
     },
@@ -43,12 +44,12 @@ async function main() {
     },
   });
 
-    await prisma.noteTag.createMany({
+  await prisma.noteTag.createMany({
     data: [
-        { noteId: note.id, tagId: tag1.id },
-        { noteId: note.id, tagId: tag2.id }
-    ]
-    });
+      { noteId: note.id, tagId: tag1.id },
+      { noteId: note.id, tagId: tag2.id },
+    ],
+  });
 
   console.log("Seed completed.");
 }
@@ -57,4 +58,7 @@ main()
   .catch((e) => {
     console.error(e);
     process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
   });

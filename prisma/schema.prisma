@@ -8,9 +8,11 @@ datasource db {
 
 model User {
   id         Int        @id @default(autoincrement())
+  name       String
   email      String     @unique
   password   String
   createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 
   notes      Note[]
   favorites  Favorite[]
@@ -23,6 +25,7 @@ model Note {
   fileUrl     String
   course      String
   createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
   authorId    Int
   author      User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
@@ -32,30 +35,30 @@ model Note {
 }
 
 model Tag {
-  id        Int       @id @default(autoincrement())
-  name      String    @unique
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
 
-  notes     NoteTag[]
+  notes       NoteTag[]
 }
 
 model NoteTag {
-  noteId    Int
-  tagId     Int
+  noteId      Int
+  tagId       Int
 
-  note      Note      @relation(fields: [noteId], references: [id], onDelete: Cascade)
-  tag       Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  note        Note       @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag         Tag        @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@id([noteId, tagId])
 }
 
 model Favorite {
-  id        Int       @id @default(autoincrement())
-  userId    Int
-  noteId    Int
-  createdAt DateTime  @default(now())
+  id          Int        @id @default(autoincrement())
+  userId      Int
+  noteId      Int
+  createdAt   DateTime   @default(now())
 
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  note      Note      @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  note        Note       @relation(fields: [noteId], references: [id], onDelete: Cascade)
 
   @@unique([userId, noteId])
 }
