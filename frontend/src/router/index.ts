@@ -4,6 +4,7 @@ import RegisterPage from "../pages/RegisterPage.vue";
 import NotesPage from "../pages/NotesPage.vue";
 import NoteDetailPage from "../pages/NoteDetailPage.vue";
 import FavoritesPage from "../pages/FavoritesPage.vue";
+import CreateNotePage from "../pages/CreateNotePage.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +33,10 @@ const router = createRouter({
       path: "/favorites",
       component: FavoritesPage,
     },
+    {
+      path: "/create",
+      component: CreateNotePage,
+    }
   ],
 });
 
